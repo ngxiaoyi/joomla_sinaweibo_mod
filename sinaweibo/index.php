@@ -31,7 +31,7 @@ $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
 
 	<p><strong>联系模块开发者：</strong>
 	</p>
-	<p>本Joomla后台发微博模块由&nbsp;<a href="http://weibo.com/jsports" target="_blank">@ngxiaoyi</a> 开发，联系作者或者获取更多joomla本地化扩展信息，戳：<a title="软件081班博" href="http://www.ruanjian081.com/" target="_blank">Joomla后台发微博模块</a>
+	<p>本Joomla后台发微博模块由&nbsp;<a href="http://weibo.com/jsports" target="_blank">@ngxiaoyi</a> 开发，联系作者或者获取更多joomla本地化扩展信息，戳：<a title="软件081班博" href="http://www.ruanjian081.com/programe-design/php-language/26-joomla3-sinaweibo" target="_blank">Joomla后台发微博模块</a>
 	</p>
 	<p>&nbsp;</p>
 	<p><strong>产品使用帮助</strong>
