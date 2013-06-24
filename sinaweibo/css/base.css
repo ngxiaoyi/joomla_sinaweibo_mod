@@ -1,0 +1,117 @@
+@charset "utf-8";
+/*
+  维护者：黄晓烽
+  文档作用：定义微博标准版基本样式，重置样式，功能模块样式
+*/
+
+/* reset */
+html{ *overflow-x:hidden;}
+body, p, ul, li, h1, h2, h3, h4, form, input, textarea, label, dd{ margin:0; padding:0;}
+body{ font:12px/1.5 Tahoma, Geneva, sans-serif; word-wrap:break-word; word-break:break-all;}
+li{ list-style:none;}
+img{ border:0;}
+em{ font-style:normal;}
+input:focus, textarea:focus{ outline:none;}
+form{text-align: center;}
+textarea{ font-family:Tahoma, Geneva, sans-serif; resize:none;width: 90%;}
+.hidden{ display:none!important;}
+.blur-txt{ color:#999!important;}
+.search-txt{ color:#F00!important;}
+
+
+/*fixed ie6*/
+*html .new-tips-fixed{ position:absolute; top:expression(documentElement.scrollTop + (documentElement.clientHeight - this.clientHeight-6)); right:6px;}
+
+/*微博发布框*/
+.post-box{ position:relative; height:200px; _zoom:1;}
+.post-box .key-tips{ position:absolute; right:35px; top:18px; height:30px; line-height:30px; }
+.post-box .post-textarea{ position:absolute; left:23px; top:52px; width:554px; height:103px; }
+.post-box .post-textarea textarea{ margin:10px 0 0 10px; width:535px; height:80px; border:0; font-size:14px; line-height:20px; overflow-y:auto; font-family:Tahoma, Geneva, sans-serif;}
+.post-box .add-area{ position:absolute; left:35px; top:154px;}
+.post-box .add-area a{ display:inline-block; margin-right:5px; padding-left:16px;}
+.post-box .add-area span{ margin-right:10px;}
+.post-box .add-area a.icon-close-btn{ margin:0 0 0 5px; padding-left:0; vertical-align:middle; _font-size:0;}
+.post-box .share-btn{ position:absolute; right:40px; top:148px; width:106px; height:34px; cursor:pointer; text-indent:-9999px;outline:none;}
+.post-box .upload-pic{ position:absolute; left:85px; top:152px; width:40px; height:20px; filter:alpha(opacity=0); opacity:0; overflow:hidden;}
+.post-box .upload-pic input{ width:40px; height:20px; overflow:hidden;}
+.post-box .post-success{ position:absolute; top:80px; left:210px; width:167px; height:45px; background-position:0 -60px;}
+
+/*微博列表*/
+.feed-list{ padding:20px 25px;}
+.feed-list .feed-tit{ padding-bottom:6px;}
+.feed-list .feed-tit h3{ text-indent:6px; font-size:14px;}
+.feed-list .feed-filter{ float:right;}
+.feed-list .feed-filter strong{ margin:0 10px;}
+.feed-list .feed-filter a{ margin:0 10px;}
+.feed-list .new-feed{ display:block; margin:0 0 8px; height:29px; line-height:29px; text-align:center; outline:none;}
+.feed-list li{ padding:15px 5px;}
+.feed-list .feed-content{ margin-left:68px; _margin-left:65px;}
+.feed-list.mblog-list .feed-content{ margin-left:0;}
+.feed-list .feed-main{ font-size:14px; _width:100%; _float:left; /*处理IE6图片放大显示不正常的BUG*/}
+.feed-list .preview-img{ margin-top:8px; *width:100%; _width:auto; /*处理IE7图片放大显示不正常的BUG，IE6需重置一下宽度*/  overflow:hidden; _zoom:1;}
+.feed-list .feed-img{ position:relative; float:left; margin-right:8px; overflow:hidden; _zoom:1;}
+.feed-list .feed-img .video-view{ position:absolute; top:50%; left:50%; margin:-16px 0 0 -16px; width:33px; height:33px; cursor:pointer; filter:alpha(opacity=75); opacity:0.75; background-position:0 -189px;}
+.feed-list .feed-img .loading-img{ position:absolute; top:50%; left:50%; margin:-10px 0 0 -10px; width:20px; height:20px; background:url(bgimg/Transparent.gif) no-repeat; }
+.feed-list .feed-img img{ padding:2px;}
+.feed-list .forward{ padding:12px;}
+.feed-list .forward p{ color:#707070;}
+.feed-list .forward p span{ margin-left:10px; color:#707070;}
+.feed-list .forward p span a{ margin:0 5px;}
+.feed-list .forward .cutline{ margin-top:20px; padding-top:10px; border-top:1px solid #eaeaea;}
+.feed-list .show-img, .feed-list li .show-video{ padding-bottom:5px;}
+.feed-list .show-img p, .feed-list li .show-video p{ margin-bottom:10px;}
+.feed-list .show-img p a { display:inline-block; margin-right:10px;}
+.feed-list .show-img p span { margin:0 8px; color:#707070;}
+.feed-list .show-video p a { display:inline-block;}
+.feed-list li .show-video p span{ margin:0 10px; color:#707070;}
+.feed-list .show-img div{ text-align:center;}
+.feed-list .feed-info{ margin:9px 0 5px;}
+.feed-list .feed-info p{ float:right;}
+.feed-list .feed-info p a{ margin:0 10px;}
+.feed-list .feed-info p span{ margin:0 5px;}
+
+/*微博评论*/
+.feed-comment{ _zoom:1;}
+.post-comment{ padding-bottom:10px;}
+.feed-comment .post-comment-main{ margin-bottom:10px; }
+.feed-comment .post-comment-main .icon-face-choose{ float:left;}
+.feed-comment .post-comment-main .general-btn{ float:right;}
+.feed-comment .post-comment-main .comment-keyin{ margin:0 68px 0 40px; padding:2px; border-width:1px; border-style:solid; border-color:#999999 #c6c6c6 #cecece #c0c0c0; background-color:#fcfcfc; _zoom:1;}
+.feed-comment .post-comment-main .comment-keyin .comment-textarea{ width:100%; _float:left; font-family:Tahoma, Geneva, sans-serif;}
+.post-comment .keyin-tips{ float:right; margin-right:68px; _display:inline;}
+.post-comment label{ margin-left:40px;}
+.post-comment label input{ margin-right:3px; vertical-align:-3px;}
+.feed-comment li{ padding:10px 0;}
+.feed-comment .comment-content{ margin-left:41px; _margin-left:38px;}
+.feed-comment .comment-content p span{ margin-left:8px; }
+.feed-comment .comment-content div{ margin-top:14px; text-align:right;}
+.feed-comment .comment-content div a{ margin:0 5px;}
+.feed-comment .more-comment{ margin-top:12px; text-align:right;}
+
+/*登录提示*/
+.login-tips{ position:relative; margin:0 1px 15px; width:598px; height:126px; background:url(bgimg/login_tips.png) no-repeat;}
+.login-tips .btn-sina-bind-s, .login-tips .btn-sina-login, .login-tips .btn-login{ position:absolute; top:32px; left:20px;}
+.login-tips .guide-reg{ position:absolute; top:75px; left:26px; color:#fff;}
+.login-tips .guide-reg a, .login-tips .guide-reg a:visited{ color:#fff; text-decoration:underline;}
+.login-tips .tips-txt{ position:absolute; top:70px; left:240px; width:350px;}
+
+/*评论列表*/
+.comment-list{ padding:20px 25px;}
+.comment-list li{ padding:15px 10px 20px; overflow:hidden; zoom:1;}
+.comment-list li .checkbox{ float:left; margin:19px 10px 0 0;}
+.comment-list li .checkbox input{ width:14px; height:14px;}
+.comment-list li .comment-list-main{ margin-left:20px;}
+.comment-list li .comment-c{ position:relative; margin-left:63px; _margin-left:60px; _zoom:1;}
+.comment-list li .c-info{ margin:0 60px 7px 0;}
+.comment-list li .c-for { overflow:hidden;}
+.comment-list li .c-for p{ width:365px; word-break:break-all; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;}
+.comment-list li .icon-reply, .comment-list li .icon-del{ float:right; text-indent:12px;}
+.comment-list li .icon-del{ position:absolute; right:0; top:0; text-indent:12px;}
+.comment-list.all-comment li .comment-c{ margin-left:68px; _margin-left:65px;}
+.comment-list.all-comment li .c-info{ margin-right:50px;}
+
+/*公用类*/
+	/*用户头像*/
+	.user-pic{ float:left;}
+	.user-pic img{ padding:1px; width:50px; height:50px;}
+	.feed-comment .user-pic img{ width:30px; height:30px;}

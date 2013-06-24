@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="3.0"
+	client="administrator">
+	<name>joomla后台新浪微博发布模块</name>
+	<author>@ngxiaoyi</author>
+	<creationDate>2013-05</creationDate>
+	<copyright>Copyright (C) 2012 - 2013 @ngxiaoyi, All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>ngxiaoyi@gmail.com</authorEmail>
+	<authorUrl>www.ruanjian081.com</authorUrl>
+	<version>1.0.0</version>
+	<description>新浪微博后台发布模块，作者：@ngxiaoyi</description>
+	<files>
+		<filename module="mod_sinaweibo">mod_sinaweibo.php</filename>
+		<filename>mod_sinaweibo.xml</filename>
+		<filename>index.html</filename>
+		<folder>sinaweibo</folder>
+		<folder>tmpl</folder>
+	</files>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="AppKey"
+					type="text"
+					label="App Key"
+					description="新浪微博网站接入提供的App Key" />
+				<field
+					name="AppSecret"
+					type="text"
+					label="App Secret"
+					description="新浪微博网站接入提供的App Secret，应该是一个32位的字符串。如果你重置了App Secret，别忘了更新此设置项" />			
+			</fieldset>
+			<fieldset name="advanced">
+				<field
+					name="width"
+					type="text"
+					label="模块宽度"
+					default="620"
+					description="设置模块的宽，单位px。如果模块设置在joomla3.X后台默认模板的cpanel位置，建议设置620，如果放在icon位置，建议设置392" />
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>
