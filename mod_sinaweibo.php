@@ -16,7 +16,7 @@ if ( !file_exists($filename) ) {
 	// 生成网站接入config文件
 	if ( $params->get('AppKey') && $params->get('AppSecret') ) {
 
-		$wb_callback = JURI::base().'modules/mod_sinaweibo/sinaweibo/index.php';
+		$wb_callback = JURI::base().'modules/mod_sinaweibo/sinaweibo/callback.php';
 
 		$data = '<?php
 	header("Content-Type: text/html; charset=UTF-8");
