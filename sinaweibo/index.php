@@ -40,7 +40,7 @@ $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
 	<p>1.要使用本扩展，你首先需要将你的网站接入新浪微博，网站接入地址：<a href="http://open.weibo.com/connect" target="_blank">新浪微博网站接入</a>
 	</p>
 	<p>2.下载安装本扩展。</p>
-	<p>3.后台配置，设置你在新浪微博接入时获得的WB_AKEY、WB_SKEY、WB_CALLBACK_URL等参数以及模块位置、宽高等参数</p>
+	<p>3.后台配置，设置你在新浪微博接入时获得的AppKEY、AppSecret等参数以及joomla模块位置、模块宽高等参数</p>
 	<p>4.点击底下的微博登陆按钮即可立即发微博</p>
 	<p>&nbsp;</p>
 	<p><strong>产品特性介绍</strong>
