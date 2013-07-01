@@ -11,26 +11,50 @@ defined('_JEXEC') or die;
 
 $filename = __DIR__.'/sinaweibo/config.php';
 
-if ( !file_exists($filename) ) {
+// 生成网站接入config文件
+if ( $params->get('AppKey') && $params->get('AppSecret') ) {
 
-	// 生成网站接入config文件
-	if ( $params->get('AppKey') && $params->get('AppSecret') ) {
+	if ( strlen( $params->get('AppKey') )==10 && strlen( $params->get('AppSecret')==32 ) ) {
 
-		$wb_callback = JURI::base().'modules/mod_sinaweibo/sinaweibo/callback.php';
+		if ( file_exists($filename) ) {
 
-		$data = '<?php
+			include( $filename );
+
+			//参数定义不对，需重新生成配置文件
+			if ( (!defined('WB_AKEY') || !defined('WB_SKEY') || !defined('WB_CALLBACK_URL')) or ( WB_AKEY!=$params->get('AppKey') || WB_SKEY!=$params->get('AppSecret') ) ) {
+
+				$wb_callback = JURI::base().'modules/mod_sinaweibo/sinaweibo/callback.php';
+				$data = '<?php
 	header("Content-Type: text/html; charset=UTF-8");
 	define( "WB_AKEY" , "'.$params->get("AppKey").'" );
 	define( "WB_SKEY" , "'.$params->get("AppSecret").'" );
 	define( "WB_CALLBACK_URL" , "'.$wb_callback.'" );';
-		file_put_contents( $filename,  utf8_encode($data) );
-		
+				file_put_contents( $filename,  utf8_encode($data) );
+
+			}
+
+		}else {
+
+			$wb_callback = JURI::base().'modules/mod_sinaweibo/sinaweibo/callback.php';
+			$data = '<?php
+	header("Content-Type: text/html; charset=UTF-8");
+	define( "WB_AKEY" , "'.$params->get("AppKey").'" );
+	define( "WB_SKEY" , "'.$params->get("AppSecret").'" );
+	define( "WB_CALLBACK_URL" , "'.$wb_callback.'" );';
+			file_put_contents( $filename,  utf8_encode($data) );
+
+		}
+
 	}else{
 
-		echo '请在模块设置中填写好AppKey和AppSecret等配置参数。';
-		exit();
+		echo '<script>alert("AppKey/AppSecret字符长度不符合要求，请重新填写，程序将继续执行。")</script>';
 
 	}
+
+}else{
+
+	echo '请在模块设置中填写好AppKey和AppSecret等配置参数。';
+	exit();
 
 }
 
