@@ -14,7 +14,7 @@ $filename = __DIR__.'/sinaweibo/config.php';
 // 生成网站接入config文件
 if ( $params->get('AppKey') && $params->get('AppSecret') ) {
 
-	if ( strlen( $params->get('AppKey') )==10 && strlen( $params->get('AppSecret')==32 ) ) {
+	if ( strlen( $params->get('AppKey') )===10 && strlen( $params->get('AppSecret') )===32 ) {
 
 		if ( file_exists($filename) ) {
 
