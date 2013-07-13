@@ -4,7 +4,18 @@ session_start();
 include_once( 'config.php' );
 include_once( 'saetv2.ex.class.php' );
 
-$c = new SaeTClientV2( WB_AKEY , WB_SKEY , $_SESSION['token']['access_token'] );
+$o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+
+if ( $_SESSION['token']['access_token'] ){
+	$token = $_SESSION['token']['access_token'];
+}
+elseif ( $o->getTokenFromJSSDK() && $tokenArr=$o->getTokenFromJSSDK() ) {
+	$token = $tokenArr['access_token'];
+}else{
+	header('Location: index.php');
+}
+
+$c = new SaeTClientV2( WB_AKEY , WB_SKEY , $token );
 $ms  = $c->home_timeline();
 $uid_get = $c->get_uid();
 $uid = $uid_get['uid'];
@@ -54,8 +65,7 @@ $user_message = $c->show_user_by_id( $uid);//根据ID获取用户等基本信息
 
 <div class="feed-list">
 <ul>
-<?php foreach( $ms['statuses'] as $i=>$item ): 
-?>
+<?php foreach( $ms['statuses'] as $i=>$item ): ?>
 
   <li>
 	<div class="user-pic">
@@ -65,19 +75,32 @@ $user_message = $c->show_user_by_id( $uid);//根据ID获取用户等基本信息
 	</div>
 	<div class="feed-content">
 		<p class="feed-main">
-			<a href="<?php echo $item['user']['profile_url'];?>" title="" target="_blank">
+			<a href="http://weibo.com/<?php echo $item['user']['profile_url'];?>" title="" target="_blank">
 				<?php echo $item['user']['screen_name'];?>
 			</a>：<?php echo $item['text'];?>
 		</p>
-		<?php
-			if ($item['thumbnail_pic']) {
-		?>
-			<a class="fancybox" href="<?php echo $item['thumbnail_pic'];?>" target="_blank">
+		<?php if ($item['thumbnail_pic']) { ?>
+			<a class="fancybox" href="<?php echo $item['original_pic'];?>" target="_blank">
 				<img src="<?php echo $item['thumbnail_pic'];?>">
 			</a>
-		<?php
-			}
-		?>
+		<?php }elseif ($item['retweeted_status']) {	//转发微博和图片微博不可能重合 ?>
+				<p class="feed-main">
+					<a href="http://weibo.com/<?php echo $item['retweeted_status']['user']['profile_url'];?>" title="" target="_blank">
+						<?php echo $item['retweeted_status']['user']['screen_name'];?>
+					</a>：<?php echo $item['retweeted_status']['text'];?>
+				</p>
+				<?php if ($item['retweeted_status']['thumbnail_pic']) { ?>
+					<a class="fancybox" href="<?php echo $item['retweeted_status']['original_pic'];?>" target="_blank">
+						<img src="<?php echo $item['retweeted_status']['thumbnail_pic'];?>">
+					</a>
+				<?php } ?>
+		<?php } ?>
+
+	</div>
+	<div style="clear:both;"></div>
+</li>
+
+<?php endforeach; ?>
 <!-- 	转发、收藏、评论功能，待完善，收费版将提供
 		<div class="feed-info">
 			<p>
@@ -87,11 +110,6 @@ $user_message = $c->show_user_by_id( $uid);//根据ID获取用户等基本信息
 			</p>
 		</div>
  -->
-	</div>
-	<div style="clear:both;"></div>
-</li>
-
-<?php endforeach; ?>
 </ul>
 </div>
 <?php endif; ?>
