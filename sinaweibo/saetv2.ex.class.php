@@ -237,7 +237,7 @@ class SaeTOAuthV2 {
 		$key = "weibojs_" . $this->client_id;
 		if ( isset($_COOKIE[$key]) && $cookie = $_COOKIE[$key] ) {
 			parse_str($cookie, $token);
-			if ( isset($token['access_token']) && isset($token['refresh_token']) ) {
+			if ( isset($token['access_token']) ) {
 				$this->access_token = $token['access_token'];
 				$this->refresh_token = $token['refresh_token'];
 				return $token;
