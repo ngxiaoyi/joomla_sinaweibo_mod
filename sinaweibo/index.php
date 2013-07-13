@@ -7,15 +7,15 @@
 
 session_start();
 
-if ( $_SESSION['token']['access_token'] ){
-	header('Location: weibolist.php');		//access_token过期自动抓取新的token，功能待完善。
-	exit();
-}
-
 include_once( 'config.php' );
 include_once( 'saetv2.ex.class.php' );
 
 $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+
+if ( $_SESSION['token']['access_token'] || $o->getTokenFromJSSDK() ){
+	header('Location: weibolist.php');		//access_token过期自动抓取新的token，功能待完善。
+	exit();
+}
 
 $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
 
@@ -31,7 +31,7 @@ $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
 
 	<p><strong>联系模块开发者：</strong>
 	</p>
-	<p>本Joomla后台发微博模块由&nbsp;<a href="http://weibo.com/jsports" target="_blank">@ngxiaoyi</a> 开发，联系作者或者获取更多joomla本地化扩展信息，戳：<a title="软件081班博" href="http://www.ruanjian081.com/programe-design/php-language/26-joomla3-sinaweibo" target="_blank">Joomla后台发微博模块</a>
+	<p>本Joomla后台发微博模块由&nbsp;<a href="http://weibo.com/jsports" target="_blank">@ngxiaoyi</a> 开发，联系作者或者获取更多joomla本地化扩展信息，戳：<a title="软件081班博" href="http://www.ruanjian081.com/" target="_blank">Joomla后台发微博模块</a>
 	</p>
 	<p>&nbsp;</p>
 	<p><strong>产品使用帮助</strong>
@@ -40,7 +40,7 @@ $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
 	<p>1.要使用本扩展，你首先需要将你的网站接入新浪微博，网站接入地址：<a href="http://open.weibo.com/connect" target="_blank">新浪微博网站接入</a>
 	</p>
 	<p>2.下载安装本扩展。</p>
-	<p>3.后台配置，设置你在新浪微博接入时获得的AppKEY、AppSecret等参数以及joomla模块位置、模块宽高等参数</p>
+	<p>3.后台配置，设置你在新浪微博接入时获得的WB_AKEY、WB_SKEY、WB_CALLBACK_URL等参数以及模块位置、宽高等参数</p>
 	<p>4.点击底下的微博登陆按钮即可立即发微博</p>
 	<p>&nbsp;</p>
 	<p><strong>产品特性介绍</strong>
